@@ -16,12 +16,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Canyon Bike Co",
-      "url": "https://albertspencer.github.io/canyon-bike-landing/",
-
-
-
-
-
+    "url": "https://albertspencer.github.io/canyon-bike-landing/",
     "sameAs": [],
     "address": {
       "@type": "PostalAddress",
@@ -68,10 +63,6 @@
           <div class="col-lg-6 text-center">
    <img src="https://www.santacruzbicycles.com/cdn/shop/files/EDR__3_Loudenvielle_2025_S3R2235.jpg?v=1755889573&width=875"
      class="img-fluid rounded shadow" alt="Performance road bicycle — close-up profile" />
-
-
-
-
           </div>
         </div>
       </div>
@@ -111,9 +102,6 @@
           </div>
           <div class="col-md-6 text-center">
       <img src="https://images.unsplash.com/photo-1529429612213-0b9d9d3a9a04?auto=format&fit=crop&w=800&q=80" alt="Exterior of a local bike shop with bikes displayed outside" class="img-fluid rounded shadow">
-
-
-
           </div>
         </div>
       </div>
@@ -168,9 +156,100 @@
     </div>
   </footer>
 
+  <!-- Booking success toast -->
+  <div id="bookingToast" class="booking-toast" role="status" aria-live="polite" aria-hidden="true" style="display:none">
+    <svg class="check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="tick" d="M3 12.5 L9 17 L21 6" />
+    </svg>
+    <div class="content">
+      <div class="title" id="bookingToastTitle">Booking successful</div>
+      <div class="subtitle" id="bookingToastSubtitle">Thanks — we received your booking request.</div>
+    </div>
+    <button class="close-btn" id="bookingToastClose" aria-label="Dismiss">✕</button>
+  </div>
+
+  <script>
+  (function () {
+    const form = document.getElementById('contact');
+    const toast = document.getElementById('bookingToast');
+    const toastTitle = document.getElementById('bookingToastTitle');
+    const toastSubtitle = document.getElementById('bookingToastSubtitle');
+    const toastClose = document.getElementById('bookingToastClose');
+
+    // Automatic mailto opening disabled
+    const AUTO_OPEN_MAILTO = false;
+
+    // Show toast helper
+    function showToast(title, subtitle, timeout = 2800) {
+      toastTitle.textContent = title;
+      toastSubtitle.textContent = subtitle;
+      toast.style.display = 'flex';
+      // force reflow so transition triggers reliably
+      void toast.offsetWidth;
+      toast.classList.add('show');
+      toast.setAttribute('aria-hidden', 'false');
+
+      // auto-hide
+      clearTimeout(toast._hideTimer);
+      toast._hideTimer = setTimeout(() => {
+        toast.classList.remove('show');
+        toast.setAttribute('aria-hidden', 'true');
+        // hide after transition
+        setTimeout(() => toast.style.display = 'none', 420);
+      }, timeout);
+    }
+
+    // Dismiss button
+    toastClose.addEventListener('click', () => {
+      clearTimeout(toast._hideTimer);
+      toast.classList.remove('show');
+      toast.setAttribute('aria-hidden', 'true');
+      setTimeout(() => toast.style.display = 'none', 420);
+    });
+
+    // Basic required validation and mailto builder
+    function buildMailto(data) {
+      const to = 'aspencer1@buffs.wtamu.edu'; // change if needed
+      const subject = `Booking request: ${data.service || 'Service'}`;
+      const body = `Name: ${data.name || ''}%0D%0APhone: ${data.phone || ''}%0D%0AService: ${data.service || ''}%0D%0APreferred date: ${data.date || ''}%0D%0ANotes: ${data.notes || ''}`;
+      return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    }
+
+    // Listen for form submit
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+
+      // simple validation for required inputs
+      const name = form.querySelector('#name').value.trim();
+      const phone = form.querySelector('#phone').value.trim();
+      const service = form.querySelector('#service').value;
+      // if these are required in the HTML, this just adds a nicer UX
+      if (!name || !phone || !service) {
+        showToast('Please complete the form', 'Name, phone and service are required', 2600);
+        return;
+      }
+
+      const date = form.querySelector('#date').value;
+      const notes = form.querySelector('#notes').value.trim();
+
+      // Show success toast (but DO NOT auto-open mail client)
+      showToast('Booking request received', 'Thanks — we recorded the request locally.', 3200);
+
+      // If you want to manually trigger the mailto link (AUTO_OPEN_MAILTO true), uncomment below:
+      if (AUTO_OPEN_MAILTO) {
+        setTimeout(() => {
+          const mailto = buildMailto({ name, phone, service, date, notes });
+          window.location.href = mailto;
+        }, 900);
+      }
+    });
+  })();
+  </script>
+
   <script>
     // small accessible enhancements
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
