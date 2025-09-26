@@ -1,4 +1,4 @@
-# Canyon Bike Co — Landing Page
+# Canyon Bike Co. Landing Page
 
 
 What it is
