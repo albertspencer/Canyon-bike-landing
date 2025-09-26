@@ -1,7 +1,7 @@
 # Reflection — Canyon Bike Co Landing Page
 
 **Author:** Albert Spencer  
-**Date:** (replace with submission date)
+**Date:** (9/24/25)
 
 ---
 
