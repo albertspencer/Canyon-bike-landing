@@ -111,36 +111,12 @@
     <section id="book" class="py-5">
       <div class="container">
         <h2 class="h3 fw-bold mb-3">Book a service</h2>
-        <form id="contact" class="row g-3" action="mailto:aspencer1@buffs.wtamu.edu" method="post" aria-label="Booking form">
-          <div class="col-md-6">
-            <label for="name" class="form-label">Full name</label>
-            <input id="name" name="name" type="text" class="form-control" required aria-required="true">
-          </div>
-          <div class="col-md-6">
-            <label for="phone" class="form-label">Phone</label>
-            <input id="phone" name="phone" type="tel" class="form-control" required aria-required="true">
-          </div>
-          <div class="col-md-6">
-            <label for="service" class="form-label">Service needed</label>
-            <select id="service" name="service" class="form-select" required>
-              <option value="">Choose...</option>
-              <option>Basic Tune-Up</option>
-              <option>Full Service</option>
-              <option>Brake / Gear Repair</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label for="date" class="form-label">Preferred date</label>
-            <input id="date" name="date" type="date" class="form-control">
-          </div>
-          <div class="col-12">
-            <label for="notes" class="form-label">Notes</label>
-            <textarea id="notes" name="notes" rows="3" class="form-control" placeholder="Any issues to note"></textarea>
-          </div>
-          <div class="col-12 text-end">
-            <button type="submit" class="btn btn-primary">Send Booking Request</button>
-          </div>
-        </form>
+       <form id="contact" class="row g-3" action="https://formsubmit.co/aspencer1@buffs.wtamu.edu" method="POST" aria-label="Booking form">
+  <!-- prevent spam / style redirect (optional) -->
+  <input type="hidden" name="_subject" value="New booking from Canyon Bike Co site">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://albertspencer.github.io/canyon-bike-landing/">
+
         <p class="small text-muted mt-3">This form opens your email client. For a production app, replace with a server endpoint or form service.</p>
       </div>
     </section>
