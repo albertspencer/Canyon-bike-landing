@@ -6,3 +6,98 @@ body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neu
 .hero-img { max-height: 420px; object-fit: cover; }
 .navbar-brand img { object-fit: cover; }
 a { text-decoration: none; }
+/* Booking success toast & check animation */
+.booking-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%) translateY(20px);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  min-width: 280px;
+  max-width: 92%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
+  z-index: 1200;
+  border-left: 4px solid #0d6efd; /* accent */
+}
+
+/* when visible */
+.booking-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* checkmark svg styling */
+.booking-toast svg.check {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+}
+
+/* stroke animation */
+.check .tick {
+  stroke: #0d6efd;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: tick-draw 540ms ease forwards 220ms;
+}
+
+@keyframes tick-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* message text */
+.booking-toast .content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.booking-toast .title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.booking-toast .subtitle {
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+/* subtle pulse while waiting (optional) */
+.booking-toast .pulse {
+  width: 8px;
+  height: 8px;
+  background: #0d6efd;
+  border-radius: 999px;
+  opacity: 0.95;
+  transform-origin: center;
+  animation: pulse 900ms ease-in-out infinite;
+  display: none; /* hidden by default */
+}
+@keyframes pulse {
+  0% { transform: scale(.9); opacity: .95; }
+  50% { transform: scale(1.25); opacity: .55; }
+  100% { transform: scale(.9); opacity: .95; }
+}
+
+/* small dismiss button (for accessibility) */
+.booking-toast .close-btn {
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 18px;
+}
+
