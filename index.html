@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Canyon Bike Co — Local Bike Shop in Canyon, TX</title>
+  <title>Canyon Bike Co. Local Bike Shop in Canyon, TX</title>
   <meta name="description" content="Canyon Bike Co — Expert repairs, affordable tune-ups, and a curated selection of bikes and accessories. Book a service or shop online today." />
   <meta name="keywords" content="bike shop, bike repair, Canyon TX, tune-up, local bike store" />
   <link rel="canonical" href="https://albertspencer.github.io/canyon-bike-landing/" />
-  <!-- Bootstrap CDN -->
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
  <link rel="stylesheet" href="style.css">
 
-  <!-- Structured Data (Organization) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,7 +35,7 @@
     <div class="container d-flex align-items-center justify-content-between">
       <a class="navbar-brand d-flex align-items-center" href="#" aria-label="Canyon Bike Co homepage">
       <img src="logo.jpg" alt="Canyon Bike Co logo — bicycle icon" width="48" height="48" class="me-2 rounded">
-        <span class="fw-bold">Canyon Bike Co</span>
+        <span class="fw-bold">Canyon Bike Co.</span>
       </a>
       <nav aria-label="Primary" class="d-none d-md-block">
         <a class="me-3" href="#services">Services</a>
@@ -52,10 +51,10 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <h1 class="display-5 fw-bold">Fast tune-ups. Trusted service. Ride sooner.</h1>
-            <p class="lead">Local bike repairs, expert bike fitting, and quality parts that keep you rolling. Book a same-week service or shop our curated accessories.</p>
+            <h1 class="display-5 fw-bold">Fast tune ups. Trusted service. Ride sooner.</h1>
+            <p class="lead">Local bike repairs, expert bike fitting, and quality parts that keep you rolling. Book a same week service or shop our curated accessories.</p>
             <ul class="list-unstyled">
-              <li>• Same-week tune-ups</li>
+              <li>• Same week tune ups</li>
               <li>• Certified mechanics</li>
               <li>• Free pickup in Canyon, TX for orders over $75</li>
             </ul>
@@ -80,11 +79,11 @@
           </article>
           <article class="col-md-4" aria-labelledby="svc2">
             <h3 id="svc2" class="h5">Custom Bike Fitting</h3>
-            <p>Personalized fit to improve comfort and performance — recommended for regular riders and commuters.</p>
+            <p>Personalized fit to improve comfort and performance recommended for regular riders and commuters.</p>
           </article>
           <article class="col-md-4" aria-labelledby="svc3">
             <h3 id="svc3" class="h5">Parts & Accessories</h3>
-            <p>Selection of tubes, chains, helmets, and lights — all from trusted brands.</p>
+            <p>Selection of tubes, chains, helmets, and lights, all from trusted brands.</p>
           </article>
         </div>
       </div>
@@ -95,8 +94,8 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <h2 class="h3 fw-bold">Local. Reliable. Rider-first.</h2>
-            <p>We’re a Canyon-owned shop focusing on fast, reliable repair and honest advice. We help riders spend more time on the road and less time in the shop.</p>
+            <h2 class="h3 fw-bold">Local. Reliable. Rider first.</h2>
+            <p>We’re a Canyon owned shop focusing on fast, reliable repair and honest advice. We help riders spend more time on the road and less time in the shop.</p>
             <p class="mb-0"><strong>Hours:</strong> Mon–Sat 9am–6pm</p>
             <p><strong>Address:</strong> 123 Main St, Canyon, TX</p>
             <a class="btn btn-outline-primary" href="#contact">Contact</a>
@@ -177,7 +176,7 @@
     const toastSubtitle = document.getElementById('bookingToastSubtitle');
     const toastClose = document.getElementById('bookingToastClose');
 
-    // Automatic mailto opening disabled
+    
     const AUTO_OPEN_MAILTO = false;
 
     // Show toast helper
@@ -185,22 +184,21 @@
       toastTitle.textContent = title;
       toastSubtitle.textContent = subtitle;
       toast.style.display = 'flex';
-      // force reflow so transition triggers reliably
+     
       void toast.offsetWidth;
       toast.classList.add('show');
       toast.setAttribute('aria-hidden', 'false');
 
-      // auto-hide
       clearTimeout(toast._hideTimer);
       toast._hideTimer = setTimeout(() => {
         toast.classList.remove('show');
         toast.setAttribute('aria-hidden', 'true');
-        // hide after transition
+ 
         setTimeout(() => toast.style.display = 'none', 420);
       }, timeout);
     }
 
-    // Dismiss button
+
     toastClose.addEventListener('click', () => {
       clearTimeout(toast._hideTimer);
       toast.classList.remove('show');
@@ -208,23 +206,22 @@
       setTimeout(() => toast.style.display = 'none', 420);
     });
 
-    // Basic required validation and mailto builder
+
     function buildMailto(data) {
-      const to = 'aspencer1@buffs.wtamu.edu'; // change if needed
+      const to = 'aspencer1@buffs.wtamu.edu'; 
       const subject = `Booking request: ${data.service || 'Service'}`;
       const body = `Name: ${data.name || ''}%0D%0APhone: ${data.phone || ''}%0D%0AService: ${data.service || ''}%0D%0APreferred date: ${data.date || ''}%0D%0ANotes: ${data.notes || ''}`;
       return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${body}`;
     }
 
-    // Listen for form submit
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
 
-      // simple validation for required inputs
+    
       const name = form.querySelector('#name').value.trim();
       const phone = form.querySelector('#phone').value.trim();
       const service = form.querySelector('#service').value;
-      // if these are required in the HTML, this just adds a nicer UX
+      
       if (!name || !phone || !service) {
         showToast('Please complete the form', 'Name, phone and service are required', 2600);
         return;
@@ -233,7 +230,7 @@
       const date = form.querySelector('#date').value;
       const notes = form.querySelector('#notes').value.trim();
 
-      // Show success toast (but DO NOT auto-open mail client)
+      
       showToast('Booking request received', 'Thanks — we recorded the request locally.', 3200);
 
       // If you want to manually trigger the mailto link (AUTO_OPEN_MAILTO true), uncomment below:
