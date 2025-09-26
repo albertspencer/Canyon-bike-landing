@@ -17,6 +17,7 @@ How to use
 Where AI helped
 - I used AI to draft the hero copy, meta description, JSON-LD, alt text, and initial README/Reflection drafts.  
 - I edited, integrated, and tested everything (roughly 50% AI / 50% me).
+- I did have the AI heavily help me with the booking animation.
 
 Files
 - `index.html`, `styles.css`, `Reflection.md`
